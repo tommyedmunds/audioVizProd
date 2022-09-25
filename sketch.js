@@ -4,10 +4,10 @@ function preload(fileName) {
   if (fileName) {
     sound = loadSound(fileName);
   } else {
-    sound = loadSound('../assets/myeyes1.wav');
+    sound = loadSound('/assets/myeyes1.wav');
   }
 
-  console.log('sound2 ', sound);
+  //console.log('sound2 ', sound);
 }
 
 function setup() {
