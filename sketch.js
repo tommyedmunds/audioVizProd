@@ -4,7 +4,10 @@ function preload(fileName) {
   if (fileName) {
     sound = loadSound(fileName);
   } else {
-    sound = loadSound('/assets/myeyes1.mp3');
+    // sound = loadSound('/assets/myeyes1.mp3');
+    sound = loadSound(
+      'https://raw.githubusercontent.com/tommyedmunds/audioVizProd/master/assets/myeyes1.mp3'
+    );
   }
 
   //console.log('sound2 ', sound);
