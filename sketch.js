@@ -4,7 +4,7 @@ function preload(fileName) {
   if (fileName) {
     sound = loadSound(fileName);
   } else {
-    sound = loadSound('/assets/myeyes1.wav');
+    sound = loadSound('/assets/myeyes1.mp3');
   }
 
   //console.log('sound2 ', sound);
@@ -57,7 +57,7 @@ function draw() {
     // vertex(0, wave);
     // vertex(wave, 0);
     // vertex(0, -wave);
-    circle(displayWidth / 2, y, wave);
+    circle(displayWidth / 2, y, wave / 1.2);
   }
 
   if (wave.toString().split('').includes('8')) {
