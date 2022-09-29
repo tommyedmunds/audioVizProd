@@ -1,4 +1,5 @@
 let clicked = false;
+let cnvWidth, cnvHeight;
 
 function preload(fileName) {
   if (fileName) {
@@ -17,6 +18,10 @@ function setup() {
   createFileInput((e) => {
     sound = loadSound(e.data);
   }, false);
+
+  console.log(displayWidth, displayWidth);
+  cnvHeight = displayHeight / 2;
+  cnvWidth = displayWidth / 2;
   let cnv = createCanvas(displayWidth, displayHeight / 1.2);
   cnv.mouseClicked(() => {
     togglePlay();
@@ -29,6 +34,7 @@ function setup() {
 let sphereStuff = 10;
 function draw() {
   let spect, wave;
+  let backwards;
   background(200);
   //let spectrum = fft.analyze();
   noStroke(55);
@@ -42,7 +48,6 @@ function draw() {
   //   line(spect, height, width / spectrum.length, h);
   // }
 
-  let waveform = fft.waveform();
   noFill();
   beginShape();
 
@@ -50,21 +55,40 @@ function draw() {
   //rotateY(millis() / 1000);
   //background(205, 102, 94);
   //sphere(40);
-
+  //rotate(displayWidth / 2, wave / 2);
+  let waveform = fft.waveform();
   //console.log(frameCount);
+
   for (let i = 0; i < waveform.length; i++) {
     wave = map(i, 0, waveform.length, 0, width);
     let y = map(waveform[i], -1, 1, 0, height);
     stroke(50);
+
     // vertex(wave, y);
     // vertex(0, wave);
     // vertex(wave, 0);
     // vertex(0, -wave);
-    circle(displayWidth / 2, y, wave / 1.2);
-  }
+    if (frameCount === 0) {
+      backwards = false;
+    } else if (frameCount >= 2000) {
+      backwards = true;
+    }
 
-  if (wave.toString().split('').includes('8')) {
-    sphereStuff = Math.floor(Math.random() * 20);
+    circle(displayWidth / 2, y, wave / 10);
+
+    stroke(100);
+    circle(displayWidth / 2, y, wave / 5);
+
+    stroke(150);
+    circle(displayWidth / 2, y, wave / 2.5);
+    // if (backwards) {
+    rotate(frameCount * 0.000005);
+
+    // } else {
+    //   rotate(frameCount * 0.055 * 0.000025);
+    // }
+
+    //translate(wave, y / 100);
   }
 
   endShape();
